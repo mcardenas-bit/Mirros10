@@ -1,0 +1,587 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Actividades de Aprendizaje — Investigación Educativa</title>
+    <!-- Google Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400..700;1,400..700&family=Space+Mono:ital,wght@0,400;0,700;1,400&family=Plus+Jakarta+Sans:wght@300;400;500;600&display=swap" rel="stylesheet">
+    
+    <style>
+        :root {
+            /* Wallpaper Projects Editorial Design Tokens */
+            --color-ink-black: #1e1e1e;
+            --color-paper-white: #ffffff;
+            --color-warm-cream: #fbf9f3;
+            --color-border: #1e1e1e;
+            
+            --font-display: 'Playfair Display', Georgia, serif;
+            --font-body: 'Plus Jakarta Sans', ui-sans-serif, system-ui, sans-serif;
+            --font-mono: 'Space Mono', monospace;
+
+            --radius-button: 20px;
+            --radius-flat: 0px;
+
+            --spacing-unit: 4px;
+            --spacing-16: 16px;
+            --spacing-24: 24px;
+            --spacing-40: 40px;
+            --spacing-80: 80px;
+        }
+
+        * {
+            box-sizing: border-box;
+            margin: 0;
+            padding: 0;
+        }
+
+        body {
+            background-color: var(--color-paper-white);
+            color: var(--color-ink-black);
+            font-family: var(--font-body);
+            font-size: 14px;
+            line-height: 1.6;
+            -webkit-font-smoothing: antialiased;
+        }
+
+        /* Header / Nav */
+        header {
+            position: sticky;
+            top: 0;
+            background: var(--color-paper-white);
+            border-bottom: 1px solid var(--color-ink-black);
+            z-index: 100;
+            padding: 20px 40px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .wordmark {
+            font-family: var(--font-body);
+            font-size: 11px;
+            font-weight: 600;
+            letter-spacing: 0.1em;
+            text-transform: uppercase;
+            line-height: 1.2;
+        }
+
+        .header-actions {
+            display: flex;
+            gap: 12px;
+            align-items: center;
+        }
+
+        .btn-pill {
+            background-color: var(--color-ink-black);
+            color: var(--color-paper-white);
+            font-family: var(--font-mono);
+            font-size: 11px;
+            text-transform: uppercase;
+            letter-spacing: 0.05em;
+            padding: 8px 18px;
+            border-radius: var(--radius-button);
+            border: 1px solid var(--color-ink-black);
+            cursor: pointer;
+            transition: opacity 0.2s ease;
+            text-decoration: none;
+            display: inline-flex;
+            align-items: center;
+            gap: 8px;
+        }
+
+        .btn-pill:hover {
+            opacity: 0.85;
+        }
+
+        .btn-ghost {
+            background-color: transparent;
+            color: var(--color-ink-black);
+        }
+
+        /* Hero Section */
+        .hero {
+            background-color: var(--color-warm-cream);
+            padding: var(--spacing-80) 40px;
+            border-bottom: 1px solid var(--color-ink-black);
+        }
+
+        .hero-container {
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+
+        .kicker {
+            font-family: var(--font-body);
+            font-size: 10px;
+            font-weight: 600;
+            letter-spacing: 0.15em;
+            text-transform: uppercase;
+            margin-bottom: 16px;
+            display: block;
+        }
+
+        .hero-title {
+            font-family: var(--font-display);
+            font-size: clamp(36px, 6vw, 72px);
+            font-weight: 500;
+            line-height: 1.05;
+            letter-spacing: -0.02em;
+            margin-bottom: 24px;
+            max-width: 900px;
+        }
+
+        .meta-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            gap: 24px;
+            margin-top: 40px;
+            padding-top: 24px;
+            border-top: 1px solid rgba(30, 30, 30, 0.15);
+            font-family: var(--font-mono);
+            font-size: 12px;
+        }
+
+        .meta-item span {
+            display: block;
+            opacity: 0.6;
+            margin-bottom: 4px;
+            font-size: 10px;
+            text-transform: uppercase;
+        }
+
+        /* Main Content Units */
+        .main-container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 40px;
+        }
+
+        .unit-section {
+            padding: var(--spacing-80) 0;
+            border-bottom: 1px solid var(--color-ink-black);
+            display: grid;
+            grid-template-columns: 35% 65%;
+            gap: 40px;
+        }
+
+        .unit-section:nth-child(even) {
+            background-color: var(--color-warm-cream);
+            margin: 0 -40px;
+            padding: var(--spacing-80) 40px;
+        }
+
+        .unit-sidebar {
+            position: sticky;
+            top: 100px;
+            height: fit-content;
+        }
+
+        .unit-number {
+            font-family: var(--font-mono);
+            font-size: 12px;
+            margin-bottom: 8px;
+            display: block;
+        }
+
+        .unit-title {
+            font-family: var(--font-display);
+            font-size: 32px;
+            line-height: 1.15;
+            letter-spacing: -0.01em;
+            margin-bottom: 16px;
+        }
+
+        .unit-outcome {
+            font-size: 13px;
+            opacity: 0.8;
+            border-left: 2px solid var(--color-ink-black);
+            padding-left: 12px;
+            margin-top: 16px;
+        }
+
+        .activity-card {
+            background: var(--color-paper-white);
+            border: 1px solid var(--color-ink-black);
+            padding: 32px;
+            margin-bottom: 24px;
+            position: relative;
+        }
+
+        .activity-badge {
+            display: inline-block;
+            font-family: var(--font-mono);
+            font-size: 10px;
+            text-transform: uppercase;
+            padding: 4px 8px;
+            border: 1px solid var(--color-ink-black);
+            margin-bottom: 16px;
+        }
+
+        .activity-heading {
+            font-family: var(--font-display);
+            font-size: 22px;
+            margin-bottom: 12px;
+        }
+
+        .activity-desc {
+            margin-bottom: 20px;
+            font-size: 14px;
+            color: #333;
+        }
+
+        .details-list {
+            list-style: none;
+            margin-bottom: 24px;
+        }
+
+        .details-list li {
+            position: relative;
+            padding-left: 20px;
+            margin-bottom: 8px;
+            font-size: 13px;
+        }
+
+        .details-list li::before {
+            content: "—";
+            position: absolute;
+            left: 0;
+            color: var(--color-ink-black);
+        }
+
+        /* Checkbox Tracker */
+        .task-checker {
+            display: flex;
+            align-items: center;
+            gap: 12px;
+            padding-top: 16px;
+            border-top: 1px dashed rgba(30, 30, 30, 0.2);
+            font-family: var(--font-mono);
+            font-size: 12px;
+            cursor: pointer;
+            user-select: none;
+        }
+
+        .task-checker input[type="checkbox"] {
+            width: 18px;
+            height: 18px;
+            accent-color: var(--color-ink-black);
+            cursor: pointer;
+        }
+
+        .completed-text {
+            text-decoration: line-through;
+            opacity: 0.5;
+        }
+
+        /* Progress Bar */
+        .progress-bar-container {
+            position: fixed;
+            bottom: 0;
+            left: 0;
+            width: 100%;
+            height: 4px;
+            background: rgba(30, 30, 30, 0.1);
+            z-index: 1000;
+        }
+
+        .progress-bar-fill {
+            height: 100%;
+            background: var(--color-ink-black);
+            width: 0%;
+            transition: width 0.3s ease;
+        }
+
+        /* Footer */
+        footer {
+            padding: 40px;
+            background: var(--color-paper-white);
+            border-top: 1px solid var(--color-ink-black);
+            font-family: var(--font-mono);
+            font-size: 11px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        @media (max-width: 850px) {
+            .unit-section {
+                grid-template-columns: 1fr;
+                gap: 24px;
+                padding: 40px 0;
+            }
+
+            .unit-section:nth-child(even) {
+                padding: 40px 20px;
+                margin: 0 -20px;
+            }
+
+            .main-container {
+                padding: 0 20px;
+            }
+
+            header, .hero {
+                padding-left: 20px;
+                padding-right: 20px;
+            }
+
+            .unit-sidebar {
+                position: static;
+            }
+        }
+    </style>
+</head>
+<body>
+
+    <div class="progress-bar-container">
+        <div class="progress-bar-fill" id="progressBar"></div>
+    </div>
+
+    <!-- Header Navigation -->
+    <header>
+        <div class="wordmark">
+            Maestría en Pedagogía<br>
+            <span style="font-weight: 400; opacity: 0.7;">UPEC - PA2 (2023-2024)</span>
+        </div>
+        <div class="header-actions">
+            <button class="btn-pill btn-ghost" onclick="window.print()">Imprimir / PDF</button>
+            <button class="btn-pill" id="downloadBtn">Descargar HTML</button>
+        </div>
+    </header>
+
+    <!-- Hero Section -->
+    <section class="hero">
+        <div class="hero-container">
+            <span class="kicker">Guía de Actividades Post-Unidad</span>
+            <h1 class="hero-title">Investigación Educativa</h1>
+            <p style="font-size: 16px; max-width: 650px; opacity: 0.85;">
+                Compendio de entregables, talleres y tareas evaluativas que los estudiantes deben completar al finalizar cada unidad temática según el sílabo académico.
+            </p>
+
+            <div class="meta-grid">
+                <div class="meta-item">
+                    <span>Docente</span>
+                    Dra. Miriam Cárdenas Zea
+                </div>
+                <div class="meta-item">
+                    <span>Modalidad</span>
+                    Presencial (150.4 hrs)
+                </div>
+                <div class="meta-item">
+                    <span>Horas Autónomas</span>
+                    86.4 Horas
+                </div>
+                <div class="meta-item">
+                    <span>Seguimiento</span>
+                    <span id="progressPercent" style="font-size: 14px; opacity: 1; font-weight: bold;">0% Completado</span>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Main Content Units -->
+    <main class="main-container">
+
+        <!-- UNIDAD 1 -->
+        <section class="unit-section">
+            <div class="unit-sidebar">
+                <span class="unit-number">UNIDAD 01</span>
+                <h2 class="unit-title">La Investigación Educativa</h2>
+                <div class="unit-outcome">
+                    <strong>Resultado de Aprendizaje:</strong><br>
+                    Aproximación al contexto histórico e institucional conceptual de la investigación educativa.
+                </div>
+            </div>
+
+            <div class="unit-content">
+                <article class="activity-card">
+                    <span class="activity-badge">Evaluación Principal • Unidad 1</span>
+                    <h3 class="activity-heading">Ensayos Reflexivos Semanales</h3>
+                    <p class="activity-desc">
+                        Elaborar ensayos de carácter reflexivo donde el estudiante analice sintéticamente los contenidos teóricos aprendidos sobre los orígenes, paradigmas y criterios reguladores de la investigación en educación.
+                    </p>
+                    
+                    <ul class="details-list">
+                        <li><strong>Requisito clave:</strong> Incluir explícitamente los desafíos encontrados en la comprensión conceptual y las estrategias utilizadas para superarlos.</li>
+                        <li><strong>Enfoque metodológico:</strong> Articulación de la teoría leída con la praxis pedagógica real.</li>
+                        <li><strong>Estructura sugerida:</strong> Introducción reflexiva, Desarrollo crítico del tema semanal y Conclusiones de autorreflexión.</li>
+                    </ul>
+
+                    <label class="task-checker">
+                        <input type="checkbox" onchange="toggleTask(this)">
+                        <span class="checker-label">Marcar como completado (Ensayo Reflexivo U1)</span>
+                    </label>
+                </article>
+
+                <article class="activity-card" style="background-color: var(--color-warm-cream);">
+                    <span class="activity-badge">Taller Práctico Acompañante</span>
+                    <h3 class="activity-heading">Ejercicios de Muestreo y Análisis Cuantitativo</h3>
+                    <p class="activity-desc">
+                        Desarrollar y entregar las guías de análisis de datos cuantitativos resultantes de las clases magistrales y los talleres de aplicación estadística.
+                    </p>
+                    <ul class="details-list">
+                        <li>Uso de software de visualización de datos y literatura complementaria.</li>
+                        <li>Identificación de variables y muestreo aplicados al campo educativo.</li>
+                    </ul>
+
+                    <label class="task-checker">
+                        <input type="checkbox" onchange="toggleTask(this)">
+                        <span class="checker-label">Marcar como completado (Ejercicios Cuantitativos)</span>
+                    </label>
+                </article>
+            </div>
+        </section>
+
+        <!-- UNIDAD 2 -->
+        <section class="unit-section">
+            <div class="unit-sidebar">
+                <span class="unit-number">UNIDAD 02</span>
+                <h2 class="unit-title">Clases de Investigaciones en Educación</h2>
+                <div class="unit-outcome">
+                    <strong>Resultado de Aprendizaje:</strong><br>
+                    Estudiar y estructurar las etapas clave de los distintos tipos de investigación educativa.
+                </div>
+            </div>
+
+            <div class="unit-content">
+                <article class="activity-card">
+                    <span class="activity-badge">Proyecto Central • Unidad 2</span>
+                    <h3 class="activity-heading">Desarrollo del Proyecto de Investigación</h3>
+                    <p class="activity-desc">
+                        Formular y entregar un anteproyecto/proyecto de investigación aplicando de forma rigurosa una de las tipologías o enfoques estudiados (Científica, Tecnológica, Cultural, Cuantitativa o Cualitativa).
+                    </p>
+                    
+                    <ul class="details-list">
+                        <li><strong>Formulación del Problema:</strong> Planteamiento de la pregunta de investigación fundamentada.</li>
+                        <li><strong>Diseño del Estudio:</strong> Delimitación conceptual y metodológica adaptada al contexto escolar/curricular.</li>
+                        <li><strong>Metodología y Análisis:</strong> Descripción detallada de las herramientas de recolección, interpretación de datos e implicaciones éticas.</li>
+                        <li><strong>Entrega final:</strong> Informe detallado estructurado con conclusiones y fundamentación bibliográfica.</li>
+                    </ul>
+
+                    <label class="task-checker">
+                        <input type="checkbox" onchange="toggleTask(this)">
+                        <span class="checker-label">Marcar como completado (Informe del Proyecto U2)</span>
+                    </label>
+                </article>
+
+                <article class="activity-card" style="background-color: var(--color-warm-cream);">
+                    <span class="activity-badge">Actividad Colaborativa</span>
+                    <h3 class="activity-heading">Aulas Invertidas & Foros Éticos</h3>
+                    <p class="activity-desc">
+                        Participación activa en el entorno SGA compartiendo posturas frente a la ética del investigador educativo y los nuevos escenarios de la investigación.
+                    </p>
+
+                    <label class="task-checker">
+                        <input type="checkbox" onchange="toggleTask(this)">
+                        <span class="checker-label">Marcar como completado (Participación SGA / Foros)</span>
+                    </label>
+                </article>
+            </div>
+        </section>
+
+        <!-- UNIDAD 3 -->
+        <section class="unit-section">
+            <div class="unit-sidebar">
+                <span class="unit-number">UNIDAD 03</span>
+                <h2 class="unit-title">Diseño Teórico y Metodológico</h2>
+                <div class="unit-outcome">
+                    <strong>Resultado de Aprendizaje:</strong><br>
+                    Dominio del sistema metodológico como competencia profesional indispensable.
+                </div>
+            </div>
+
+            <div class="unit-content">
+                <article class="activity-card">
+                    <span class="activity-badge">Evaluación Integradora • Unidad 3</span>
+                    <h3 class="activity-heading">Proyecto Integrador Colaborativo de Diseño Metodológico</h3>
+                    <p class="activity-desc">
+                        Trabajar en equipos colaborativos para diseñar y formalizar la arquitectura teórica-metodológica de una investigación educativa aplicable a la realidad social actual.
+                    </p>
+                    
+                    <ul class="details-list">
+                        <li><strong>Matriz de Consistencia:</strong> Formulación e interrelación de hipótesis, alcances, variables y dimensiones de estudio.</li>
+                        <li><strong>Instrumentos de Recogida:</strong> Diseño y validación de instrumentos de recolección de datos (entrevistas, cuestionarios, fichas).</li>
+                        <li><strong>Criterios de Rigor Científico:</strong> Demostración de criterios de credibilidad, transferibilidad, dependencia y confirmabilidad en el diseño.</li>
+                        <li><strong>Uso de Herramientas:</strong> Integración de gestores como Mendeley y herramientas multimedia para potenciar los hallazgos.</li>
+                    </ul>
+
+                    <label class="task-checker">
+                        <input type="checkbox" onchange="toggleTask(this)">
+                        <span class="checker-label">Marcar como completado (Diseño Metodológico Colaborativo)</span>
+                    </label>
+                </article>
+
+                <article class="activity-card" style="background-color: var(--color-warm-cream);">
+                    <span class="activity-badge">Taller de Habilidades</span>
+                    <h3 class="activity-heading">Defensa y Argumentación Crítica de Posiciones</h3>
+                    <p class="activity-desc">
+                        Presentación interactiva del diseño ante el grupo de pares, poniendo en práctica habilidades de fundamentación, crítica, generalización y argumentación multilateral.
+                    </p>
+
+                    <label class="task-checker">
+                        <input type="checkbox" onchange="toggleTask(this)">
+                        <span class="checker-label">Marcar como completado (Defensa Oral y Argumentación)</span>
+                    </label>
+                </article>
+            </div>
+        </section>
+
+    </main>
+
+    <!-- Footer -->
+    <footer>
+        <div>
+            MÓDULO DE INVESTIGACIÓN EDUCATIVA &mdash; GUÍA ESTUDIANTIL
+        </div>
+        <div>
+            UNIVERSIDAD TÉCNICA ESTATAL DE QUEVEDO (UTEQ)
+        </div>
+    </footer>
+
+    <!-- Script para Interactividad y Descarga -->
+    <script>
+        function updateProgress() {
+            const checkboxes = document.querySelectorAll('input[type="checkbox"]');
+            const total = checkboxes.length;
+            let checked = 0;
+
+            checkboxes.forEach(cb => {
+                if (cb.checked) checked++;
+            });
+
+            const percentage = Math.round((checked / total) * 100);
+            document.getElementById('progressBar').style.width = percentage + '%';
+            document.getElementById('progressPercent').innerText = percentage + '% Completado';
+        }
+
+        function toggleTask(checkbox) {
+            const labelText = checkbox.nextElementSibling;
+            if (checkbox.checked) {
+                labelText.classList.add('completed-text');
+            } else {
+                labelText.classList.remove('completed-text');
+            }
+            updateProgress();
+        }
+
+        // Script para descargar la página como archivo .html estático/funcional
+        document.getElementById('downloadBtn').addEventListener('click', function() {
+            const htmlContent = '<!DOCTYPE html>\n' + document.documentElement.outerHTML;
+            const blob = new Blob([htmlContent], { type: 'text/html' });
+            const url = URL.createObjectURL(blob);
+            const a = document.createElement('a');
+            a.href = url;
+            a.download = 'Guia_Actividades_Investigacion_Educativa.html';
+            document.body.appendChild(a);
+            a.click();
+            document.body.removeChild(a);
+            URL.revokeObjectURL(url);
+        });
+    </script>
+</body>
+</html>
+```eof
+
+He estructurado la guía respetando minuciosamente los requerimientos del sílabo oficial (actividades evaluación por unidad: ensayos reflexivos, proyectos de formulación e informe, diseño metodológico colaborativo en equipo, guías de talleres cuantitativos y defensas teóricas). Además, implementé un diseño interactivo con checkboxes de seguimiento e integré un botón directo de descarga para guardar la página localmente en formato `.html`.
